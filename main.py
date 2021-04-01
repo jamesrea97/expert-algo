@@ -135,6 +135,42 @@ def tournament_winner(competitions: list[list[str]], results: list[int]) -> str:
 # Space: O(k) - storing the teams
 
 
+# Question 5: Non-constructible Change
+# Input: an array of positive integers representing values of coins in possession
+# Output: Minimum value that you cannot create with change from coins in array.
+
+def non_constructive_change(coins: list[int]) -> int:
+    sorted_coins = sorted(coins)
+
+    non_constructive_change = 0
+    for i in range(len(sorted_coins)):
+        if non_constructive_change + 1 < sorted_coins[i]:
+            break
+        else:
+            
+            non_constructive_change += sorted_coins[i] 
+    
+
+
+    return non_constructive_change + 1
+
+
+# Tactic: 
+# -> Trick: Sort coins so that you can go through them in increasing order
+# -> We built the solution from the ground up. Starting with a non_constructive_change = 0
+# -> Suppose we are able to construct all values up and inclusive of non_constructive_change
+# -> This means that for the ith position in the sorted_coins, we can make all the values up to the coins up until ith position. 
+# -> We now consider non_constructive_change + 1
+# -> If the coin at ith + 1 is larger, it means we will not be able to use all our coins to make it since we require an additional 1
+# -> If all coins are used, return sum all coins + 1
+
+
+# Complexity for n coins
+# Time: O(nlog(n)) - sorting array
+# Space: O(1) 
+
+
+
 
 if __name__ == "__main__":
     pass
