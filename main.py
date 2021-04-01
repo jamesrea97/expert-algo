@@ -199,8 +199,6 @@ def find_closest_value_in_BST(root: BST, target: int) -> int:
     
     return recursive_closest_value_in_BST(root, target, root.value)
 
-
-
 # Tactic: 
 # -> Go down the tree, choosing the branch that is closes to the target value
 # -> Keeping track of the closest and returning this one when reaching the leaf of the tree
@@ -210,6 +208,44 @@ def find_closest_value_in_BST(root: BST, target: int) -> int:
 # Time: O(log(n)) - going down one branch of the tree
 # Space: O(1) 
 
+
+# Question 7: Branch Sums
+# Input: BinaryTree (defined below) root  
+# Output: an ordered (from left to right) array of branch sums
+
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def branch_sums(root: BinaryTree) -> list[int]:
+    
+    def recursive_branch_sums(node: BinaryTree, sums: list[int], current_sum: int) -> None:
+        if node is None:
+            return
+
+        current_sum += node.value
+        if node.left is None and node.right is None:
+            sums.append(current_sum)
+
+        recursive_branch_sums(node.left, sums, current_sum)
+        recursive_branch_sums(node.right, sums, current_sum)
+
+    sums = []
+    recursive_branch_sums(root, sums, 0)
+    return sums
+
+
+
+# Tactic: 
+# -> Create an array (this is passed by reference and so will be updated throughout the algorithm)
+# -> If both children are None, the current node must be a leaf and so we add the current_sum to sums
+
+
+# Complexity for n coins
+# Time: O(n) - visiting each node in case we have a one branch of n nodes tree 
+# Space: O() - visiting each node in case we have a one branch of n nodes tree
 
 
 
