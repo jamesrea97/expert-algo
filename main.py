@@ -34,3 +34,37 @@ def two_number_sum(array, target_sum):
 # Time: O(n) - iterating through the array (twice).
 # Space: O(n)  - storing element_count
 
+# Question 2: Validate Subsequence
+# Input: two non-empty arrays of integers
+# Output: True if second array is a subset of the first array; False otherwise
+
+def is_valid_subsequence(array, sequence):
+
+    i = 0
+    j = 0
+
+    while i < len(array) and j < len(sequence):
+        if array[i] == sequence[j]:
+            j += 1
+        i += 1
+
+    if j == len(sequence):
+        return True
+
+    return False
+
+# Tactic: 
+# -> Start at start of both array and sequence
+# -> Move onto the next element in sequence only if exists in array (in order).
+# -> If found all elements in sequence in array, return True; else False
+
+# Complexity for n elements in array, m elements in sequence where m <= n:
+# Time: O(n) - iterating through the array
+# Space: O(1)
+
+
+
+
+
+if __name__ == "__main__":
+    pass
