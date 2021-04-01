@@ -170,6 +170,50 @@ def non_constructive_change(coins: list[int]) -> int:
 # Space: O(1) 
 
 
+# Question 6: Find Closest Value in BST
+# Input: BST (defined below) tree root node and a target int value
+# Output: Closest value to target in BST
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def find_closest_value_in_BST(root: BST, target: int) -> int:
+    
+    def recursive_closest_value_in_BST(node: BST, target: int, closest: int) -> int:
+        if node is None:
+            return closest
+        
+        if abs(node.value - target) < abs(closest - target):
+            closest = node.value
+
+        if target > node.value:
+            return recursive_closest_value_in_BST(node.right, target, closest)
+        elif target < node.value:
+            return recursive_closest_value_in_BST(node.left, target, closest)
+        else:
+            return node.value
+    
+    
+    return recursive_closest_value_in_BST(root, target, root.value)
+
+
+
+# Tactic: 
+# -> Go down the tree, choosing the branch that is closes to the target value
+# -> Keeping track of the closest and returning this one when reaching the leaf of the tree
+
+
+# Complexity for n coins
+# Time: O(log(n)) - going down one branch of the tree
+# Space: O(1) 
+
+
+
+
+
 
 
 if __name__ == "__main__":
