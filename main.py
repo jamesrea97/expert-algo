@@ -236,8 +236,6 @@ def branch_sums(root: BinaryTree) -> list[int]:
     recursive_branch_sums(root, sums, 0)
     return sums
 
-
-
 # Tactic: 
 # -> Create an array (this is passed by reference and so will be updated throughout the algorithm)
 # -> If both children are None, the current node must be a leaf and so we add the current_sum to sums
@@ -245,8 +243,36 @@ def branch_sums(root: BinaryTree) -> list[int]:
 
 # Complexity for n coins
 # Time: O(n) - visiting each node in case we have a one branch of n nodes tree 
-# Space: O() - visiting each node in case we have a one branch of n nodes tree
+# Space: O(n) - visiting each node in case we have a one branch of n nodes tree
 
+
+# Question 8: Node Depths
+# Input: BinaryTree (defined below) root  
+# Output: a sum of each node's depth in the BinaryTree
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def node_depths(root: BinaryTree) -> int:
+    
+    def recursive_node_depths(node: BinaryTree, sum: int) -> int:
+        if node is None:
+            return 0
+
+        return sum + recursive_node_depths(node.left, sum + 1) + recursive_node_depths(node.right, sum + 1) 
+
+    return recursive_node_depths(root, 0)
+
+
+# Tactic: 
+# -> If node is None, make it return 0 as not a depth
+# -> At any node consider its depth and the depth of its left and right children
+
+# Complexity for n coins
+# Time: O(n) - visiting each node once
+# Space: O(1)
 
 
 
