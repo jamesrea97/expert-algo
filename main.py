@@ -34,6 +34,7 @@ def two_number_sum(array, target_sum):
 # Time: O(n) - iterating through the array (twice).
 # Space: O(n)  - storing element_count
 
+
 # Question 2: Validate Subsequence
 # Input: two non-empty arrays of integers
 # Output: True if second array is a subset of the first array; False otherwise
@@ -61,6 +62,38 @@ def is_valid_subsequence(array, sequence):
 # Complexity for n elements in array, m elements in sequence where m <= n:
 # Time: O(n) - iterating through the array
 # Space: O(1)
+
+
+# Question 3: Sorted Squared Array
+# Input: a sorted non-empty array of integers
+# Output: array of sorted squared elements in array
+
+def sorted_squared_array(array):
+    result = []
+
+    i = 0
+    j = len(array) - 1
+
+    squared_array = [e * e for e in array]
+
+    while j -i > -1:
+        if squared_array[i] > squared_array[j]:
+            result.insert(0, squared_array[i])
+            i += 1
+        else:
+            result.insert(0, squared_array[j])
+            j -= 1
+    
+    return result
+        
+# Tactic: 
+# -> Trick: negatives have positive squares
+# -> Start at either side of the squared array.
+# -> Insert into result array the largest at the start of the array.
+
+# Complexity for n elements in array, m elements in sequence where m <= n:
+# Time: O(n) - iterating through the array
+# Space: O(n) - storing result array
 
 
 
