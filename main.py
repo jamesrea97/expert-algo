@@ -5,7 +5,7 @@
 # -> Output: an array of ordered pair of elements that sum up to target sum if exist; 
 # else empty array
 
-def two_number_sum(array, target_sum):
+def two_number_sum(array: list[int], target_sum: int) -> list[int]:
     element_count = {}
 
     for e in array:
@@ -39,7 +39,7 @@ def two_number_sum(array, target_sum):
 # Input: two non-empty arrays of integers
 # Output: True if second array is a subset of the first array; False otherwise
 
-def is_valid_subsequence(array, sequence):
+def is_valid_subsequence(array: list[int], sequence: list[int]) -> bool:
 
     i = 0
     j = 0
@@ -68,7 +68,7 @@ def is_valid_subsequence(array, sequence):
 # Input: a sorted non-empty array of integers
 # Output: array of sorted squared elements in array
 
-def sorted_squared_array(array):
+def sorted_squared_array(array: list[int]) -> list[int]:
     result = []
 
     i = 0
@@ -96,6 +96,43 @@ def sorted_squared_array(array):
 # Space: O(n) - storing result array
 
 
+# Question 4: Tournament Winner
+# Input: List of lists, the competitions, comprised of 2 elements for each team and a list of results
+# containing either 0 if the left competitor won; 1 if the right competitor won (no ties possible).
+# Output: Return winning competitor
+
+def tournament_winner(competitions: list[list[str]], results: list[int]) -> str:
+    competitors = {}
+
+    for match in competitions:
+        if not competitors.get(match[0]):
+            competitors[match[0]] = 0    
+        if not competitors.get(match[1]):
+            competitors[match[1]] = 0
+
+    for result, match in zip(results, competitions):
+        if result:
+            competitors[match[0]] += 1
+        else:
+            competitors[match[1]] += 1
+    
+    winner = None
+    max_score = 0
+    for competitor, wins in competitors.items():
+        if wins > max_score:
+            winner = competitor
+            max_score = wins
+    
+    return winner
+
+        
+# Tactic: 
+# -> Trick: Get all competitors and count wins for each competitor
+# -> Return competitor with most wins
+
+# Complexity for n games, k teams:
+# Time: O(n) - iterating through the n matches in competions, the results and the competitors 
+# Space: O(k) - storing the teams
 
 
 
