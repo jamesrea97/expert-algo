@@ -40,3 +40,34 @@ def bubble_sort(array: List[int]) -> List[int]:
 # Complexity for n elements in array
 # Time: O(n^2) - if array is reversed sorted
 # Space: O(1)
+
+
+# Insertion Sort
+def insertion_sort(array: List[int]) -> List[int]:
+    for i in range(1, len(array)):
+        j = i
+        while j > 0 and array[j] < array[j - 1]:
+            array[j], array[j-1] = array[j-1], array[j]
+            j -= 1
+
+    return array
+
+# Complexity for n elements in array
+# Time: O(n^2) - if array is reversed sorted
+# Space: O(1)
+
+
+# Selection Sort
+def selection_sort(array: List[int]) -> List[int]:
+    for i in range(len(array)-1):
+        lowest_value_index = i
+        for j in range(i + 1, len(array)):
+            if array[j] < array[lowest_value_index]:
+                lowest_value_index = j
+        array[i], array[lowest_value_index] = array[lowest_value_index], array[i]
+
+    return array
+
+# Complexity for n elements in array
+# Time: O(n^2) - per position, we iterate through the array. n positions hence n * n = n^2
+# Space: O(1)
