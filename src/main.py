@@ -639,5 +639,36 @@ def run_length_encoding(string: str) -> str:
 # Time: O(n) - iterating through the string once only
 # Space: O(n) - result string
 
+
+# Question Generate Document
+# Input: two non-empty string, the characters and the document
+# Output: True if the document can be formed from the characters; False otherwise
+
+def generate_document(characters: str, document: str) -> bool:
+
+    character_count = {}
+
+    for character in characters:
+        if not character_count.get(character):
+            character_count[character] = 1
+        else:
+            character_count[character] += 1
+
+    for character in document:
+        if not character_count.get(character):
+            return False
+        else:
+            character_count[character] -= 1
+
+    return True
+
+# Tactic:
+# -> Count all characters and remove them from dict count once you use them up. Check if available
+
+# Complexity for n elements in characters, m elements in document
+# Time: O(n + m) - iterating through both the characters and the document
+# Space: O(c) - (c represents the distinct characters in characters)
+
+
 if __name__ == "__main__":
     pass
