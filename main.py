@@ -396,5 +396,24 @@ def remove_duplicate_from_linked_list(head: LinkedList):
 # Space: O(1)
 
 
+# Question 12: Nth Fibonacci
+# Input: an positive integer
+# Output: the nth Fibonacci number
+
+def get_nth_fibonacci(n: int) -> int:
+    if n == 1:
+        return 0
+    if n == 2:
+        return 1
+    return get_nth_fibonacci(n-1) + get_nth_fibonacci(n-2)
+
+# Tactic:
+# -> Use recursion
+
+# Complexity for n tasks
+# Time: O(n) - have to go through n stacks to reach the stopping condition 
+# Space: O(1)
+
+
 if __name__ == "__main__":
     pass
