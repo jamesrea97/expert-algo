@@ -332,6 +332,41 @@ def minimum_wasting_time(queries: list[int]) -> int:
 
 
 
+# Question 10: Class Photos
+# Input: an array of reds height, an array of blues heights, both of the same size
+# Rules: (1) All students wearing same color shirts must be same row, (2) Back row has larger height
+# Output: True if Rules (1) and (2) can be constructed from reds and blues
+
+def class_photos(reds: list[int], blues: list[int]) -> bool:
+
+    sorted_reds = sorted(reds)
+    sorted_blues = sorted(blues)
+
+    back = []
+    front = []
+    if sorted_reds[0] < sorted_blues[0]:
+        back = sorted_blues
+        front = sorted_reds
+    elif  sorted_reds[0] > sorted_blues[0]:
+        back = sorted_reds
+        front = sorted_blues
+    else:
+        return False
+
+    for f, b in zip(front, back):
+        if f >= b:
+            return False
+    return True
+
+# Tactic: 
+# -> Sort the list firsts. 
+# -> Compare each ith position in both lists to see if Rules apply
+
+# Complexity for n tasks
+# Time: O(nlog(n)) - sorting lists
+# Space: O(1) 
+
+
 
 if __name__ == "__main__":
     pass
