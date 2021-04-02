@@ -1,5 +1,6 @@
 """Module contains questions, answers and solutions to problems"""
-
+from typing import Optional
+ 
 # Question 1: Two Number Sum
 # -> Input: a non-empty array of integers and a target sum integer
 # -> Output: an array of ordered pair of elements that sum up to target sum if exist; 
@@ -273,6 +274,38 @@ def node_depths(root: BinaryTree) -> int:
 # Complexity for n coins
 # Time: O(n) - visiting each node once
 # Space: O(1)
+
+
+# Question 9: Depth First Search
+# Input: For a given Node (defined below) node, an array of already travelled Node names  
+# Output: an array that contains depth-first search node travelled from root, without repetition
+class Node:
+    def __init__(self, name):
+        self.children = []
+        self.name = name
+
+    def add_child(self, name) -> None:
+        self.children.append(Node(name))
+        return self
+
+    def depth_first_search(self, array) -> Optional[None:
+            array.append(self.name)
+
+            for child in self.children:
+                child.depth_first_search(array)
+
+            return array
+			
+
+# Tactic: 
+# -> Depth-first search relies on recursion and adding to the stack
+
+# Complexity for v vertices and e edges
+# Time: O(v + e) - visiting each vertex and edge in the tree
+# Space: O(v) - storing each vertex value in the tree
+
+
+
 
 
 
