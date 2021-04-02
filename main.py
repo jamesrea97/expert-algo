@@ -1,5 +1,5 @@
 """Module contains questions, answers and solutions to problems"""
-from typing import List
+from typing import List, Union
 # Question 1: Two Number Sum
 # -> Input: a non-empty array of integers and a target sum integer
 # -> Output: an array of ordered pair of elements that sum up to target sum if exist;
@@ -329,7 +329,7 @@ def minimum_wasting_time(queries: List[int]) -> int:
 # Space: O(1)
 
 
-# Question 10: Class Photos
+# Question 11: Class Photos
 # Input: an array of reds height, an array of blues heights, both of the same size
 # Rules: (1) All students wearing same color shirts must be same row, (2) Back row has larger height
 # Output: True if Rules (1) and (2) can be constructed from reds and blues
@@ -411,7 +411,55 @@ def get_nth_fibonacci(n: int) -> int:
 # -> Use recursion
 
 # Complexity for n tasks
-# Time: O(n) - have to go through n stacks to reach the stopping condition 
+# Time: O(n) - have to go through n stacks to reach the stopping condition
+# Space: O(1)
+
+
+# Question 13: Product Sum
+# Input: an array that has integer or list that can also have integers (and so on)
+# Output: Product sum (depth * integer) for each element the array
+
+def product_sum(array: List[Union[int, list]]) -> int:
+    def recursive_product_sum(array: List[Union[int, list]], depth: int, sum_: int):
+        for e in array:
+            if type(e) == list:
+                sum_ += recursive_product_sum(e, depth + 1, 0)
+            else:
+                sum_ += e
+        return sum * depth
+    return recursive_product_sum(array, 1, 0)
+
+# Tactic:
+# -> Use recursion
+
+# Complexity for n tasks
+# Time: O(n) - have to go through n stacks to reach the stopping condition
+# Space: O(1)
+
+
+# Question 14: Binary Search
+# Input: a sprted array of integers and a target value
+# Output: the index of the target value; -1 if such index does not exist.
+
+def binary_search(array: List[int], target: int) -> int:
+    start = 0
+    end = len(array) - 1
+
+    while end >=  start:
+        mid = (start + end) // 2
+        if array[mid] == target:
+            return mid
+        elif target < array[mid]:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return -1
+
+# Tactic:
+# -> Only consider half of the elements at each iteration since sorted.
+
+# Complexity for n tasks
+# Time: O(log(n)) - halving the search space every time
 # Space: O(1)
 
 
