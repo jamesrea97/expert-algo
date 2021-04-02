@@ -557,7 +557,7 @@ def selection_sort(array: List[int]) -> List[int]:
         array[i], array[lowest_value_index] = array[lowest_value_index], array[i]
 
     return array
-    
+
 # Tactic:
 # -> Iterate through the list , choosing the right value for the current index
 
@@ -565,6 +565,79 @@ def selection_sort(array: List[int]) -> List[int]:
 # Time: O(n^2) - per position, we iterate through the array. n positions hence n * n = n^2
 # Space: O(1)
 
+
+# Question: Palindrom Check
+# Input: a non empty string
+# Output: True if the string is a palindrome; False otherwise
+
+def is_palindrome(string: str) -> bool:
+    i = 0
+    j = len(string) - 1
+    while j - i > -1:
+        if string[i] != string[j]:
+            return False
+        j -= 1
+        i += 1
+    return True
+
+# Tactic:
+# -> Start with fist and last elements compare all elements same distance from middle of string
+
+# Complexity for n elements in string
+# Time: O(n) - iterating through the string once only
+# Space: O(1)
+
+
+# Question: Caesar Cipher Encryptor
+# Input: a non empty string and an integer key
+# Output: a string of the decoded string, constructed by shifting the letters by the key
+
+def caesar_cipher_encryptor(string: str, key: int) -> str:
+    result = ""
+
+    for i in range(len(string)):
+        ord_c = ord(string[i])
+        new_ord = ((ord_c + key) - 97) % 26 + 97
+        result += chr(new_ord)
+
+    return result
+
+# Tactic:
+# -> Shift and use modulo to rebase back from 97 (ord of character 'a')
+
+# Complexity for n elements in string
+# Time: O(n) - iterating through the string once only
+# Space: O(n) - result string
+
+
+# Question Run-Length Encoding
+# Input: a non-empty string
+# Rule: 'AAAA' -> '4A' (max count is 9)
+# Output: a string's run-length encoding
+
+def run_length_encoding(string: str) -> str:
+    result = ""
+
+    i = 0
+
+    while i < len(string):
+        count = 1
+        j = i + 1
+        while j < len(string) and string[j] == string[i] and count < 9:
+            count += 1
+            j += 1
+        result += f"{count}{string[i]}"
+        i = j
+
+    return result
+
+
+# Tactic:
+# -> Count number of instances of a character, stopping if exceeds 9
+
+# Complexity for n elements in string
+# Time: O(n) - iterating through the string once only
+# Space: O(n) - result string
 
 if __name__ == "__main__":
     pass
