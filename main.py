@@ -280,21 +280,21 @@ def node_depths(root: BinaryTree) -> int:
 # Input: For a given Node (defined below) node, an array of already travelled Node names  
 # Output: an array that contains depth-first search node travelled from root, without repetition
 class Node:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.children = []
         self.name = name
 
-    def add_child(self, name) -> None:
+    def add_child(self, name: str) -> None:
         self.children.append(Node(name))
         return self
 
-    def depth_first_search(self, array) -> Optional[None:
-            array.append(self.name)
+    def depth_first_search(self, array: list[str]) -> list[int]:
+        array.append(self.name)
 
-            for child in self.children:
-                child.depth_first_search(array)
+        for child in self.children:
+            child.depth_first_search(array)
 
-            return array
+        return array
 			
 
 # Tactic: 
@@ -307,6 +307,28 @@ class Node:
 
 
 
+# Question 10: Minimum Wasting Time
+# Input: a non-empty array of n positive integers representing time to compete each of the n tasks
+# Output: minimum amount of total waiting time for all queries
+
+def minimum_wasting_time(queries: list[int]) -> int:
+    sorted_queries = sorted(queries)
+
+    total_wasted_time = 0
+
+    for i in range(1, len(sorted_queries)):
+        total_wasted_time += sum(sorted_queries[:i])
+    return total_wasted_time
+
+# Tactic: 
+# -> Shortest task first is optimal.
+# -> You do not need to wait for the first element.
+# -> For each element, you must wait the total of time for all previous elements
+
+
+# Complexity for n tasks
+# Time: O(n) - iterating through all tasks
+# Space: O(1) 
 
 
 
