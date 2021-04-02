@@ -1,6 +1,6 @@
 """Module contains questions, answers and solutions to problems"""
 from typing import List, Union
-# Question 1: Two Number Sum
+# Question: Two Number Sum
 # -> Input: a non-empty array of integers and a target sum integer
 # -> Output: an array of ordered pair of elements that sum up to target sum if exist;
 # else empty array
@@ -36,7 +36,7 @@ def two_number_sum(array: List[int], target_sum: int) -> List[int]:
 # Space: O(n)  - storing element_count
 
 
-# Question 2: Validate Subsequence
+# Question: Validate Subsequence
 # Input: two non-empty arrays of integers
 # Output: True if second array is a subset of the first array; False otherwise
 
@@ -65,7 +65,7 @@ def is_valid_subsequence(array: List[int], sequence: List[int]) -> bool:
 # Space: O(1)
 
 
-# Question 3: Sorted Squared Array
+# Question: Sorted Squared Array
 # Input: a sorted non-empty array of integers
 # Output: array of sorted squared elements in array
 
@@ -97,7 +97,7 @@ def sorted_squared_array(array: List[int]) -> List[int]:
 # Space: O(n) - storing result array
 
 
-# Question 4: Tournament Winner
+# Question: Tournament Winner
 # Input: List of lists, the competitions, comprised of 2 elements for each team and list of results
 # containing either 0 if the left competitor won; 1 if the right competitor won (no ties possible).
 # Output: Return winning competitor
@@ -126,7 +126,6 @@ def tournament_winner(competitions: List[List[str]], results: List[int]) -> str:
 
     return winner
 
-
 # Tactic:
 # -> Trick: Get all competitors and count wins for each competitor
 # -> Return competitor with most wins
@@ -136,7 +135,7 @@ def tournament_winner(competitions: List[List[str]], results: List[int]) -> str:
 # Space: O(k) - storing the teams
 
 
-# Question 5: Non-constructible Change
+# Question: Non-constructible Change
 # Input: an array of positive integers representing values of coins in possession
 # Output: Minimum value that you cannot create with change from coins in array.
 
@@ -170,7 +169,7 @@ def non_constructive_change(coins: List[int]) -> int:
 # Space: O(1)
 
 
-# Question 6: Find Closest Value in BST
+# Question: Find Closest Value in BST
 # Input: BST (defined below) tree root node and a target int value
 # Output: Closest value to target in BST
 
@@ -208,7 +207,7 @@ def find_closest_value_in_BST(root: BST, target: int) -> int:
 # Space: O(1)
 
 
-# Question 7: Branch Sums
+# Question: Branch Sums
 # Input: BinaryTree (defined below) root
 # Output: an ordered (from left to right) array of branch sums
 
@@ -245,7 +244,7 @@ def branch_sums(root: BinaryTree) -> List[int]:
 # Space: O(n) - visiting each node in case we have a one branch of n nodes tree
 
 
-# Question 8: Node Depths
+# Question: Node Depths
 # Input: BinaryTree (defined below) root
 # Output: a sum of each node's depth in the BinaryTree
 class BinaryTree:
@@ -277,7 +276,7 @@ def node_depths(root: BinaryTree) -> int:
 # Space: O(1)
 
 
-# Question 9: Depth First Search
+# Question: Depth First Search
 # Input: For a given Node (defined below) node, an array of already travelled Node names
 # Output: an array that contains depth-first search node travelled from root, without repetition
 class Node:
@@ -306,7 +305,7 @@ class Node:
 # Space: O(v) - storing each vertex value in the tree
 
 
-# Question 10: Minimum Wasting Time
+# Question: Minimum Wasting Time
 # Input: a non-empty array of n positive integers representing time to compete each of the n tasks
 # Output: minimum amount of total waiting time for all queries
 
@@ -329,7 +328,7 @@ def minimum_wasting_time(queries: List[int]) -> int:
 # Space: O(1)
 
 
-# Question 11: Class Photos
+# Question: Class Photos
 # Input: an array of reds height, an array of blues heights, both of the same size
 # Rules: (1) All students wearing same color shirts must be same row, (2) Back row has larger height
 # Output: True if Rules (1) and (2) can be constructed from reds and blues
@@ -359,12 +358,12 @@ def class_photos(reds: List[int], blues: List[int]) -> bool:
 # -> Sort the list firsts.
 # -> Compare each ith position in both lists to see if Rules apply
 
-# Complexity for n tasks
+# Complexity for n elements in each list
 # Time: O(nlog(n)) - sorting lists
 # Space: O(1)
 
 
-# Question 11: Remove Duplicates From Linked List
+# Question: Remove Duplicates From Linked List
 # Input: a LinkedList (defined below) head, where each node is organized in order
 # Output: a LinkedList without any duplicates
 
@@ -391,12 +390,12 @@ def remove_duplicate_from_linked_list(head: LinkedList):
 # Tactic:
 # -> Skip the repetitions by finding the next non-repeated value
 
-# Complexity for n tasks
+# Complexity for n links in LinkedList
 # Time: O(n) - iterating through the nodes only once
 # Space: O(1)
 
 
-# Question 12: Nth Fibonacci
+# Question: Nth Fibonacci
 # Input: an positive integer
 # Output: the nth Fibonacci number
 
@@ -415,7 +414,7 @@ def get_nth_fibonacci(n: int) -> int:
 # Space: O(1)
 
 
-# Question 13: Product Sum
+# Question: Product Sum
 # Input: an array that has integer or list that can also have integers (and so on)
 # Output: Product sum (depth * integer) for each element the array
 
@@ -432,20 +431,20 @@ def product_sum(array: List[Union[int, list]]) -> int:
 # Tactic:
 # -> Use recursion
 
-# Complexity for n tasks
+# Complexity for n elements
 # Time: O(n) - have to go through n stacks to reach the stopping condition
 # Space: O(1)
 
 
-# Question 14: Binary Search
-# Input: a sprted array of integers and a target value
+# Question: Binary Search
+# Input: a sorted array of integers and a target value
 # Output: the index of the target value; -1 if such index does not exist.
 
 def binary_search(array: List[int], target: int) -> int:
     start = 0
     end = len(array) - 1
 
-    while end >=  start:
+    while end >= start:
         mid = (start + end) // 2
         if array[mid] == target:
             return mid
@@ -458,9 +457,71 @@ def binary_search(array: List[int], target: int) -> int:
 # Tactic:
 # -> Only consider half of the elements at each iteration since sorted.
 
-# Complexity for n tasks
+# Complexity for n elements
 # Time: O(log(n)) - halving the search space every time
 # Space: O(1)
+
+
+# Question: Find Three Largest Numbers
+# Input: an array of at least three numbers
+# Output: an array of the three largest elemens in array
+
+def find_three_largest_elements(array: List[int]) -> int:
+    result = [array[0], array[1], array[2]]
+
+    first = max(result)
+    third = min(result)
+    result.remove(first)
+    result.remove(third)
+    second = result[0]
+
+    for i in range(3, len(array)):
+        if array[i] > first:
+            third = second
+            second = first
+            first = array[i]
+        elif array[i] > second:
+            third = second
+            second = array[i]
+        elif array[i] > third:
+            third = array[i]
+    return [third, second, first]
+
+# Tactic:
+# -> Get initial first, second, third.
+# -> Consider remaining of the array, updating first/second/third as you iterate through it
+
+# Complexity for n elements in array
+# Time: O(n) - iterating through each element once
+# Space: O(1)
+
+
+# Question: Bubble Sort
+# Input: an array of integers
+# Output: a sorted array by Bubble Sort
+
+def bubble_sort(array: List[int]) -> List[int]:
+    while True:
+        swaps = 0
+        i = 1
+        while i < len(array):
+            if array[i - 1] > array[i]:
+                swaps += 1
+                array[i - 1], array[i] = array[i], array[i - 1]
+            i += 1
+        if swaps == 0:
+            break
+
+    return array
+# Tactic:
+# -> Iterate through the list multiple times, swapping adjacent elements if they are not in order
+# -> Stop when there are no more swaps since the list is then sorted
+
+# Complexity for n elements in array
+# Time: O(n^2) - if array is reversed sorted
+# Space: O(1)
+
+
 
 
 if __name__ == "__main__":
