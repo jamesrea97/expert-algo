@@ -1,12 +1,12 @@
 """Module contains questions, answers and solutions to problems"""
-from typing import Optional
- 
+from typing import List
 # Question 1: Two Number Sum
 # -> Input: a non-empty array of integers and a target sum integer
-# -> Output: an array of ordered pair of elements that sum up to target sum if exist; 
+# -> Output: an array of ordered pair of elements that sum up to target sum if exist;
 # else empty array
 
-def two_number_sum(array: list[int], target_sum: int) -> list[int]:
+
+def two_number_sum(array: List[int], target_sum: int) -> List[int]:
     element_count = {}
 
     for e in array:
@@ -14,19 +14,19 @@ def two_number_sum(array: list[int], target_sum: int) -> list[int]:
             element_count[e] = 1
         else:
             element_count[e] += 1
-    
+
     for i in range(len(array)):
         element = array[i]
         required_element = target_sum - element
         if element_count.get(required_element):
 
-            if element == required_element and element_count.get(element) <  2:
+            if element == required_element and element_count.get(element) < 2:
                 pass
             else:
                 return [element, required_element]
     return []
 
-# Tactic: 
+# Tactic:
 # -> Count occurrence of each element.
 # -> Use Fact required_element = target_sum - element
 # -> Consider edge case when required_element == element
@@ -40,7 +40,7 @@ def two_number_sum(array: list[int], target_sum: int) -> list[int]:
 # Input: two non-empty arrays of integers
 # Output: True if second array is a subset of the first array; False otherwise
 
-def is_valid_subsequence(array: list[int], sequence: list[int]) -> bool:
+def is_valid_subsequence(array: List[int], sequence: List[int]) -> bool:
 
     i = 0
     j = 0
@@ -55,7 +55,7 @@ def is_valid_subsequence(array: list[int], sequence: list[int]) -> bool:
 
     return False
 
-# Tactic: 
+# Tactic:
 # -> Start at start of both array and sequence
 # -> Move onto the next element in sequence only if exists in array (in order).
 # -> If found all elements in sequence in array, return True; else False
@@ -69,7 +69,7 @@ def is_valid_subsequence(array: list[int], sequence: list[int]) -> bool:
 # Input: a sorted non-empty array of integers
 # Output: array of sorted squared elements in array
 
-def sorted_squared_array(array: list[int]) -> list[int]:
+def sorted_squared_array(array: List[int]) -> List[int]:
     result = []
 
     i = 0
@@ -77,17 +77,17 @@ def sorted_squared_array(array: list[int]) -> list[int]:
 
     squared_array = [e * e for e in array]
 
-    while j -i > -1:
+    while j - i > -1:
         if squared_array[i] > squared_array[j]:
             result.insert(0, squared_array[i])
             i += 1
         else:
             result.insert(0, squared_array[j])
             j -= 1
-    
+
     return result
-        
-# Tactic: 
+
+# Tactic:
 # -> Trick: negatives have positive squares
 # -> Start at either side of the squared array.
 # -> Insert into result array the largest at the start of the array.
@@ -98,16 +98,16 @@ def sorted_squared_array(array: list[int]) -> list[int]:
 
 
 # Question 4: Tournament Winner
-# Input: List of lists, the competitions, comprised of 2 elements for each team and a list of results
+# Input: List of lists, the competitions, comprised of 2 elements for each team and list of results
 # containing either 0 if the left competitor won; 1 if the right competitor won (no ties possible).
 # Output: Return winning competitor
 
-def tournament_winner(competitions: list[list[str]], results: list[int]) -> str:
+def tournament_winner(competitions: List[List[str]], results: List[int]) -> str:
     competitors = {}
 
     for match in competitions:
         if not competitors.get(match[0]):
-            competitors[match[0]] = 0    
+            competitors[match[0]] = 0
         if not competitors.get(match[1]):
             competitors[match[1]] = 0
 
@@ -116,23 +116,23 @@ def tournament_winner(competitions: list[list[str]], results: list[int]) -> str:
             competitors[match[0]] += 1
         else:
             competitors[match[1]] += 1
-    
+
     winner = None
     max_score = 0
     for competitor, wins in competitors.items():
         if wins > max_score:
             winner = competitor
             max_score = wins
-    
+
     return winner
 
-        
-# Tactic: 
+
+# Tactic:
 # -> Trick: Get all competitors and count wins for each competitor
 # -> Return competitor with most wins
 
 # Complexity for n games, k teams:
-# Time: O(n) - iterating through the n matches in competions, the results and the competitors 
+# Time: O(n) - iterating through the n matches in competions, the results and the competitors
 # Space: O(k) - storing the teams
 
 
@@ -140,7 +140,7 @@ def tournament_winner(competitions: list[list[str]], results: list[int]) -> str:
 # Input: an array of positive integers representing values of coins in possession
 # Output: Minimum value that you cannot create with change from coins in array.
 
-def non_constructive_change(coins: list[int]) -> int:
+def non_constructive_change(coins: List[int]) -> int:
     sorted_coins = sorted(coins)
 
     non_constructive_change = 0
@@ -148,27 +148,26 @@ def non_constructive_change(coins: list[int]) -> int:
         if non_constructive_change + 1 < sorted_coins[i]:
             break
         else:
-            
-            non_constructive_change += sorted_coins[i] 
-    
 
+            non_constructive_change += sorted_coins[i]
 
     return non_constructive_change + 1
 
 
-# Tactic: 
+# Tactic:
 # -> Trick: Sort coins so that you can go through them in increasing order
 # -> We built the solution from the ground up. Starting with a non_constructive_change = 0
 # -> Suppose we are able to construct all values up and inclusive of non_constructive_change
-# -> This means that for the ith position in the sorted_coins, we can make all the values up to the coins up until ith position. 
+# -> This means that for the ith position in the sorted_coins, we can make all the values up to the
+#    coins up until ith position.
 # -> We now consider non_constructive_change + 1
-# -> If the coin at ith + 1 is larger, it means we will not be able to use all our coins to make it since we require an additional 1
+# -> If the coin at ith + 1 is larger, it means we will not be able to use all our coins to make it
+#    since we require an additional 1
 # -> If all coins are used, return sum all coins + 1
-
 
 # Complexity for n coins
 # Time: O(nlog(n)) - sorting array
-# Space: O(1) 
+# Space: O(1)
 
 
 # Question 6: Find Closest Value in BST
@@ -181,12 +180,13 @@ class BST:
         self.left = None
         self.right = None
 
+
 def find_closest_value_in_BST(root: BST, target: int) -> int:
-    
+
     def recursive_closest_value_in_BST(node: BST, target: int, closest: int) -> int:
         if node is None:
             return closest
-        
+
         if abs(node.value - target) < abs(closest - target):
             closest = node.value
 
@@ -196,22 +196,20 @@ def find_closest_value_in_BST(root: BST, target: int) -> int:
             return recursive_closest_value_in_BST(node.left, target, closest)
         else:
             return node.value
-    
-    
+
     return recursive_closest_value_in_BST(root, target, root.value)
 
-# Tactic: 
+# Tactic:
 # -> Go down the tree, choosing the branch that is closes to the target value
 # -> Keeping track of the closest and returning this one when reaching the leaf of the tree
 
-
 # Complexity for n coins
 # Time: O(log(n)) - going down one branch of the tree
-# Space: O(1) 
+# Space: O(1)
 
 
 # Question 7: Branch Sums
-# Input: BinaryTree (defined below) root  
+# Input: BinaryTree (defined below) root
 # Output: an ordered (from left to right) array of branch sums
 
 class BinaryTree:
@@ -220,9 +218,10 @@ class BinaryTree:
         self.left = None
         self.right = None
 
-def branch_sums(root: BinaryTree) -> list[int]:
-    
-    def recursive_branch_sums(node: BinaryTree, sums: list[int], current_sum: int) -> None:
+
+def branch_sums(root: BinaryTree) -> List[int]:
+
+    def recursive_branch_sums(node: BinaryTree, sums: List[int], current_sum: int) -> None:
         if node is None:
             return
 
@@ -237,18 +236,17 @@ def branch_sums(root: BinaryTree) -> list[int]:
     recursive_branch_sums(root, sums, 0)
     return sums
 
-# Tactic: 
+# Tactic:
 # -> Create an array (this is passed by reference and so will be updated throughout the algorithm)
-# -> If both children are None, the current node must be a leaf and so we add the current_sum to sums
-
+# -> If both children are None, current node must be a leaf and so we add the current_sum to sums
 
 # Complexity for n coins
-# Time: O(n) - visiting each node in case we have a one branch of n nodes tree 
+# Time: O(n) - visiting each node in case we have a one branch of n nodes tree
 # Space: O(n) - visiting each node in case we have a one branch of n nodes tree
 
 
 # Question 8: Node Depths
-# Input: BinaryTree (defined below) root  
+# Input: BinaryTree (defined below) root
 # Output: a sum of each node's depth in the BinaryTree
 class BinaryTree:
     def __init__(self, value):
@@ -256,18 +254,21 @@ class BinaryTree:
         self.left = None
         self.right = None
 
+
 def node_depths(root: BinaryTree) -> int:
-    
+
     def recursive_node_depths(node: BinaryTree, sum: int) -> int:
         if node is None:
             return 0
 
-        return sum + recursive_node_depths(node.left, sum + 1) + recursive_node_depths(node.right, sum + 1) 
+        return (sum +
+                recursive_node_depths(node.left, sum + 1) +
+                recursive_node_depths(node.right, sum + 1))
 
     return recursive_node_depths(root, 0)
 
 
-# Tactic: 
+# Tactic:
 # -> If node is None, make it return 0 as not a depth
 # -> At any node consider its depth and the depth of its left and right children
 
@@ -277,7 +278,7 @@ def node_depths(root: BinaryTree) -> int:
 
 
 # Question 9: Depth First Search
-# Input: For a given Node (defined below) node, an array of already travelled Node names  
+# Input: For a given Node (defined below) node, an array of already travelled Node names
 # Output: an array that contains depth-first search node travelled from root, without repetition
 class Node:
     def __init__(self, name: str):
@@ -288,16 +289,16 @@ class Node:
         self.children.append(Node(name))
         return self
 
-    def depth_first_search(self, array: list[str]) -> list[int]:
+    def depth_first_search(self, array: List[str]) -> List[int]:
         array.append(self.name)
 
         for child in self.children:
             child.depth_first_search(array)
 
         return array
-			
 
-# Tactic: 
+
+# Tactic:
 # -> Depth-first search relies on recursion and adding to the stack
 
 # Complexity for v vertices and e edges
@@ -305,13 +306,11 @@ class Node:
 # Space: O(v) - storing each vertex value in the tree
 
 
-
-
 # Question 10: Minimum Wasting Time
 # Input: a non-empty array of n positive integers representing time to compete each of the n tasks
 # Output: minimum amount of total waiting time for all queries
 
-def minimum_wasting_time(queries: list[int]) -> int:
+def minimum_wasting_time(queries: List[int]) -> int:
     sorted_queries = sorted(queries)
 
     total_wasted_time = 0
@@ -320,16 +319,14 @@ def minimum_wasting_time(queries: list[int]) -> int:
         total_wasted_time += sum(sorted_queries[:i])
     return total_wasted_time
 
-# Tactic: 
+# Tactic:
 # -> Shortest task first is optimal.
 # -> You do not need to wait for the first element.
 # -> For each element, you must wait the total of time for all previous elements
 
-
 # Complexity for n tasks
 # Time: O(n) - iterating through all tasks
-# Space: O(1) 
-
+# Space: O(1)
 
 
 # Question 10: Class Photos
@@ -337,7 +334,7 @@ def minimum_wasting_time(queries: list[int]) -> int:
 # Rules: (1) All students wearing same color shirts must be same row, (2) Back row has larger height
 # Output: True if Rules (1) and (2) can be constructed from reds and blues
 
-def class_photos(reds: list[int], blues: list[int]) -> bool:
+def class_photos(reds: List[int], blues: List[int]) -> bool:
 
     sorted_reds = sorted(reds)
     sorted_blues = sorted(blues)
@@ -347,7 +344,7 @@ def class_photos(reds: list[int], blues: list[int]) -> bool:
     if sorted_reds[0] < sorted_blues[0]:
         back = sorted_blues
         front = sorted_reds
-    elif  sorted_reds[0] > sorted_blues[0]:
+    elif sorted_reds[0] > sorted_blues[0]:
         back = sorted_reds
         front = sorted_blues
     else:
@@ -358,14 +355,45 @@ def class_photos(reds: list[int], blues: list[int]) -> bool:
             return False
     return True
 
-# Tactic: 
-# -> Sort the list firsts. 
+# Tactic:
+# -> Sort the list firsts.
 # -> Compare each ith position in both lists to see if Rules apply
 
 # Complexity for n tasks
 # Time: O(nlog(n)) - sorting lists
-# Space: O(1) 
+# Space: O(1)
 
+
+# Question 11: Remove Duplicates From Linked List
+# Input: a LinkedList (defined below) head, where each node is organized in order
+# Output: a LinkedList without any duplicates
+
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def remove_duplicate_from_linked_list(head: LinkedList):
+    current_node = head
+
+    while current_node is not None:
+        next_node = current_node.next
+        while next_node is not None and next_node.value == current_node.value:
+            next_node = next_node.next
+
+        current_node.next = next_node
+        current_node = current_node.next
+
+    return head
+
+
+# Tactic:
+# -> Skip the repetitions by finding the next non-repeated value
+
+# Complexity for n tasks
+# Time: O(n) - iterating through the nodes only once
+# Space: O(1)
 
 
 if __name__ == "__main__":

@@ -7,7 +7,10 @@ Questions and answers to a famous coding platform.
 This project has been built on Python 3.9.
 There are no dependencies beyond the standard libraries of Python.
 
-## Notes from Excercises
+However, in order, linting and auto-formatting libraries were used to improve the readability of the code.
+These can be found in the `requirements/dev.txt` folder of the project. None of the non-standard libraries used were in any way of help for answering the coding questions (beyond linting).
+
+## Notes from Exercises
 
 This section contains notes on the exercises.
 
